@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/usr/bin/env bash
 set -e
 
 if [ ! -f ./ssl.crt ]; then
@@ -8,7 +8,7 @@ if [ ! -f ./ssl.crt ]; then
   for base_url in $BASE_URLS; do
     domain=$(echo $base_url | cut -d "=" -f 2)
   echo here $domain
-    echo "127.0.0.1 ${domain:8}" | sudo tee -a /etc/hosts
+    echo "127.0.0.1 ${domain:8}" | tee -a /etc/hosts
     domains_list="$domains_list ${domain:8}"
   done
 

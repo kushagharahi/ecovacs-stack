@@ -3,8 +3,8 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { inspect } from 'util';
 
 export const options = {
-  key: fs.readFileSync('/opt/app/ssl.key'),
-  cert: fs.readFileSync('/opt/app/ssl.crt'),
+  key: fs.readFileSync('/opt/app/backend/ssl.key'),
+  cert: fs.readFileSync('/opt/app/backend/ssl.crt'),
 };
 
 export const requestListener = (req: IncomingMessage, res: ServerResponse) => {
