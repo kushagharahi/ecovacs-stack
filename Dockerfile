@@ -8,11 +8,10 @@ RUN apt-get update && apt-get install -y \
     mariadb-server mariadb-client supervisor \
     && rm -rf /var/lib/apt/lists/*
 
-# Setup MySQL
-RUN mkdir -p /var/lib/mysql /docker-entrypoint-initdb.d
+# Setup MySQL directories (do not pre-populate /var/lib/mysql if you want init to run)
+RUN mkdir -p /docker-entrypoint-initdb.d
 COPY ./mysql/scripts/init.sql /docker-entrypoint-initdb.d/1.sql
-RUN chown -R mysql:mysql /var/lib/mysql /docker-entrypoint-initdb.d
-
+RUN chown -R mysql:mysql /docker-entrypoint-initdb.d
 # Install mkcert for backend
 RUN curl -s https://api.github.com/repos/FiloSottile/mkcert/releases/latest \
     | grep browser_download_url \
@@ -71,5 +70,7 @@ COPY supervisord.conf /etc/supervisord.conf
 # Expose necessary ports
 EXPOSE 4200
 EXPOSE 3000
+EXPOSE 8883
+EXPOSE 443
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

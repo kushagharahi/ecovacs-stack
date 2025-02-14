@@ -4,6 +4,7 @@ set -e
 echo "Exporting environment variables..."
 export BASE_URL="https://localhost"
 export BASE_URL_01="https://ecovacs.com"
+export BASE_URL_01="https://ecouser.net"
 export MYSQL_USER="dev"
 export MYSQL_PASSWORD="dev"
 export MYSQL_DATABASE="dev"
