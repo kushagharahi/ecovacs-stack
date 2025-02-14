@@ -60,6 +60,9 @@ RUN yarn install --network-timeout 100000
 # Changes to your source code will not invalidate the cached yarn install layer.
 COPY frontend ./
 
+RUN yarn build
+
+
 WORKDIR /
 
 # Setup Supervisor
@@ -67,5 +70,6 @@ COPY supervisord.conf /etc/supervisord.conf
 
 # Expose necessary ports
 EXPOSE 4200
+EXPOSE 3000
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
